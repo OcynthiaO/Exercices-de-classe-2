@@ -1,16 +1,48 @@
-# This is a sample Python script.
+import random
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+class NPC:
+    def __init__(self, nom, race, espèce, profession):
+        self.nom = nom
+        self.race = race
+        self.espèce = espèce
+        self.profession = profession
+        self.force = self.roll_dice()
+        self.agilité = self.roll_dice()
+        self.constitution = self.roll_dice()
+        self.intelligence = self.roll_dice()
+        self.sagesse = self.roll_dice()
+        self.charisme = self.roll_dice()
+        self.classe_armure = random.randint(1, 12)
+        self.point_de_vie = random.randint(1,20)
 
+    def roll_dice(self):
+        return sum(sorted([random.randint(1, 6) for _ in range(4)])[1:])
 
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+    def afficher_caracteristiques(self):
+        print(f"Nom: {self.nom}")
+        print(f"Race: {self.race}")
+        print(f"Espèce: {self.espèce}")
+        print(f"Profession: {self.profession}")
+        print(f"Force: {self.force}")
+        print(f"Agilité: {self.agilité}")
+        print(f"Constitution: {self.constitution}")
+        print(f"Intelligence: {self.intelligence}")
+        print(f"Sagesse: {self.sagesse}")
+        print(f"Charisme: {self.charisme}")
+        print(f"Classe d'armure: {self.classe_armure}")
+        print(f"Point de vie: {self.point_de_vie}")
 
+class Kobold(NPC):
+    def attaquer(self, cible):
+        print(f"{self.nom} attaque {cible.nom} !")
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+    def subir_dommage(self, dommage):
+        print(f"{self.nom} subit {dommage} points de dommage !")
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+class Héros(NPC):
+    def attaquer(self, cible):
+        print(f"{self.nom} attaque {cible.nom} !")
+
+    def subir_dommage(self, dommage):
+        print(f"{self.nom} subit {dommage} points de dommage !")
+
